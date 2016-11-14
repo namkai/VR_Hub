@@ -1,8 +1,68 @@
-body {
-  /*padding: 50px;*/
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+
+
+
+/*nav {
+  background: rgba(61, 141, 175, 0.22) !important;
+}*/
+
+/*.container {
+  background: rgba(255, 255, 255, 0.5) !important;
+}*/
+
+
+/*body {
+  background-image: url('https://images.unsplash.com/photo-1478022599861-7d8a1d4745cd?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&s=d40975963eac4d400c4bb140f8002af8');
+  background-attachment:fixed;
+   background-repeat: no-repeat;
+   background-size: cover;
+}*/
+
+nav ul a,
+nav .brand-logo {
+  color: black !important;
 }
 
-a {
-  color: #00B7FF;
+p {
+  line-height: 2rem;
+}
+
+.button-collapse {
+  color: #26a69a;
+}
+
+.parallax-container {
+  min-height: 200px;
+  line-height: 0;
+  height: auto;
+  color: rgba(255,255,255,.9);
+}
+  .parallax-container .section {
+    width: 100%;
+  }
+
+@media only screen and (max-width : 992px) {
+  .parallax-container .section {
+    position: absolute;
+    top: 40%;
+  }
+  #index-banner .section {
+    top: 10%;
+  }
+}
+
+@media only screen and (max-width : 600px) {
+  #index-banner .section {
+    top: 0;
+  }
+}
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+  font-size: inherit;
+}
+
+footer.page-footer {
+  margin: 0;
 }
