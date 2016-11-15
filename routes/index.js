@@ -4,6 +4,14 @@ const express = require('express');
 const router = express.Router();
 const knex = require('../knex');
 const { camelizeKeys } = require('humps');
+const boom = require('boom');
+//COOKIE EXISTING OR NOT
+const authorize = function(req, res, next){
+  if(!req.session.userId){
+    return next(boom.create(400, "You are not logged in"));
+  }
+  next();
+}
 
 /* GET home page. */
 // router.get('/', function(req, res, next) {
@@ -20,7 +28,7 @@ router.get('/', function(req, res, next){
   })
 });
 
-router.get('/home',function(req,res,next){
+router.get('/home',authorize, function(req,res,next){
   res.render('home');
 })
 
@@ -40,6 +48,7 @@ router.post('/register', function(req, res, next){
     console.log(err);
   })
 })
+
 
 
 module.exports = router;

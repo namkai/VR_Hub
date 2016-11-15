@@ -18,21 +18,19 @@ router.get('/users', function(req,res,next){
 
 router.post('/users', function(req, res, next){
 
-  const {username, password, project} = req.body;
+  const {username, password} = req.body;
 
   if (!username){
-    return next(boom.create(400, "email must not be blank"));
+    return next(boom.create(400, "username must not be blank"));
   }
   if (!password || password.length < 8){
     return next(boom.create(400, "password must be longer than 8 characters"));
   }
-  if (!project || project.length > 150){
-    return next(boom.create(400,"input must be a project url"));
-  }
+
   console.log("before BCRPYT")
   bcrypt.hash(password, 12).then(function(hashedPassword){
-    let password = hashedPassword;
-    const insertUser = {username, password, project}
+    // let password = hashedPassword;
+    const insertUser = {username, hashedPassword}
     return knex('users_projects').insert(insertUser,'*')
 
   }).then(function(rows){

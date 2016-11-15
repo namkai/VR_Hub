@@ -5,9 +5,10 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       return Promise.all([
         // Inserts seed entries
-        knex('users_projects').insert({username: 'mikey', password: 'asdfg', project: 'www.google.com'}),
-        knex('users_projects').insert({username: 'tracy', password: '12212', project: 'www.facebook.com'}),
-        knex('users_projects').insert({username: 'momo', password: 'joeblack', project: 'www.twitter.com'})
+        knex('users_projects').insert({username: 'mikey', hashedPassword: '$2a$12$Zk0L0vJs1MaYgjjDJVkB7.OV6WYTEv4cJNFBmb9Qb5egSPnoWe3Oe'}, {username: '2pac@shackur.com', hashedPassword: '$2a$12$HePBXEI0/7dfjrwZUnbcoeNHQ/go.4JzLGwbGJ0rXjbbys1JVINky'})
+        // ,
+        // knex('users_projects').insert({username: 'tracy', password: '12212', project: 'www.facebook.com'}),
+        // knex('users_projects').insert({username: 'momo', password: 'joeblack', project: 'www.twitter.com'})
       ]);
     });
 };
