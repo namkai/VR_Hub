@@ -32,7 +32,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(cookieSession({
-  name: 'trackify',
+  name: 'vrExperience',
   secret: process.env.SESSION_SECRET
 }));
 
