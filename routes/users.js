@@ -23,8 +23,8 @@ router.post('/users', function(req, res, next){
   if (!username){
     return next(boom.create(400, "username must not be blank"));
   }
-  if (!password || password.length < 8){
-    return next(boom.create(400, "password must be longer than 8 characters"));
+  if (!password || password.length < 5){
+    return next(boom.create(400, "password must be longer than 5 characters"));
   }
 
   console.log("before BCRPYT")
@@ -34,11 +34,10 @@ router.post('/users', function(req, res, next){
     return knex('users_projects').insert(insertUser,'*')
 
   }).then(function(rows){
-    console.log(rows);
     const user = rows[0];
     delete user.hashedPassword;
 
-    res.redirect('/home');
+    res.redirect('/session');
   })
   .catch(function(err){
     next(err);

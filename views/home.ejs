@@ -1,3 +1,19 @@
 <!DOCTYPE html>
-
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <h1>LOGGED IN THIS IS THE HOME PAGE</h1>
+<button id="logout" onclick="doAjax()">LOGOUT</button>
+<script>
+  function doAjax(){
+    $.ajax({
+      url: '/logout',
+      method: 'DELETE',
+      success: function(data){
+        console.log(data);
+        if(data.redirect){
+          window.location.replace(data.redirect);
+        }
+      }
+    })
+  }
+
+</script>

@@ -7,13 +7,17 @@ const knex = require('../knex');
 const { camelizeKeys, decamelizeKeys } = require('humps');
 const router = express.Router();
 
+
+router.get('/session', function(req, res, next){
+  res.render('login');
+})
 router.post('/session', function(req, res, next){
   const {username, password} = req.body;
-
-  if (!username){
+  console.log(req.body);
+  if (username.length === 0){
     return next(boom.create(400, "username must not be blank"));
   }
-  if (!password || password.length < 8){
+  if (!password || password.length < 5){
     return next(boom.create(400, "insufficient password length"));
   }
 
@@ -29,8 +33,8 @@ router.post('/session', function(req, res, next){
   .then(function(){
     delete user.hashedPassword;
     req.session.userId = user.id;
-    res.send(user);
-    // res.redirect('/home');
+    console.log(req.session);
+    res.redirect('/home');
   })
   .catch(bcrypt.MISMATCH_ERROR, function(){
     throw boom.create(400, 'bad email or password');
@@ -40,9 +44,12 @@ router.post('/session', function(req, res, next){
   })
 })
 
-router.delete('/session',function(req,res,next){
-  req.session = null;
-  res.sendStatus(200);
+
+router.delete('/logout',function(req,res,next){
+  req.session.userId = null;
+  console.log(req.session, "DELETEDSHIT");
+  res.redirect(302, '/');
+
 })
 
 module.exports = router;
